@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>mkasa</title>
+	<style>
+		body
+		{
+		}
+
+		/*#total
+		{
+			background-color: white;
+			border: 1px solid black;
+			color: black;
+			width: 200px;
+			height: 50px;
+			font-size: 2em;
+			text-align: right;
+		}
+		*/
+
+		.cash-register-btn
+		{
+			background-color: white;
+			width: 50px;
+			height: 50px;
+		}
+
+		.number-viewer
+		{
+			font-size: 30px;
+ 			border: 1px solid black;
+			height: 50px;
+			width: 200px;
+		}
+	</style>
+</head>
+<body>
+	<h1>mkasa device</h1>
+	<button class="cash-register-btn" onclick="keypad(7)">7</button>
+	<button class="cash-register-btn" onclick="keypad(8)">8</button>
+	<button class="cash-register-btn" onclick="keypad(9)">9</button>
+	<br>
+	<button class="cash-register-btn" onclick="keypad(4)">4</button>
+	<button class="cash-register-btn" onclick="keypad(5)">5</button>
+	<button class="cash-register-btn" onclick="keypad(6)">6</button>
+	<br>
+	<button class="cash-register-btn" onclick="keypad(1)">1</button>
+	<button class="cash-register-btn" onclick="keypad(2)">2</button>
+	<button class="cash-register-btn" onclick="keypad(3)">3</button>
+	<br>
+	<button class="cash-register-btn" onclick="keypad(0)">0</button>
+	<button class="cash-register-btn" onclick="keypad('.')">.</button>
+	<button class="cash-register-btn" onclick="keypad('enter')">Enter</button>
+	<button class="cash-register-btn" onclick="keypad('sum')">Sum</button>
+	<h2>Product Price:</h2><div class="number-viewer" id="product-price"></div>
+	<h2>Change:</h2><div class="number-viewer" id="change"></div>
+	<h2>Total:</h2><div class="number-viewer" id="total"></div>
+	<h2>Given Cash:</h2><div class="number-viewer" id="given-cash"></div>
+<script>
+ 	var totalString = '';
+	var totalNumber = 0;
+	var payment = 0;
+	var givenCashString = '';
+	var givenCash = 0;
+
+	function keypad(num)
+	{
+		if (!payment)
+		{
+			switch(num)
+			{
+				case 0:
+					totalString += 0;
+					break;
+
+				case 1:
+					totalString += 1;
+					break;
+
+				case 2:
+					totalString += 2;
+					break;
+
+				case 3:
+					totalString += 3;
+					break;
+
+				case 4:
+					totalString += 4;
+					break;
+
+				case 5:
+					totalString += 5;
+					break;
+
+				case 6:
+					totalString += 6;
+					break;
+
+				case 7:
+					totalString += 7;
+					break;
+
+				case 8:
+					totalString += 8;
+					break;
+
+				case 9:
+					totalString += 9;
+					break;
+
+				case '.':
+					totalString += '.';
+					break;
+
+				case 'enter':
+					totalNumber += Number(totalString);
+					document.getElementById("total").innerHTML = totalNumber;
+					totalString = '';
+					break;
+				case 'sum':
+					payment = 1;
+					break;
+			}
+
+			document.getElementById("product-price").innerHTML = totalString;
+		}
+
+		if (payment)
+		{
+ 			switch(num)
+			{
+				case 0:
+					givenCashString += 0;
+					break;
+
+				case 1:
+					givenCashString += 1;
+					break;
+
+				case 2:
+					givenCashString += 2;
+					break;
+
+				case 3:
+					givenCashString += 3;
+					break;
+
+				case 4:
+					givenCashString += 4;
+					break;
+
+				case 5:
+					givenCashString += 5;
+					break;
+
+				case 6:
+					givenCashString += 6;
+					break;
+
+				case 7:
+					givenCashString += 7;
+					break;
+
+				case 8:
+					givenCashString += 8;
+					break;
+
+				case 9:
+					givenCashString += 9;
+					break;
+
+				case '.':
+					givenCashString += '.';
+					break;
+
+				case 'enter':
+					givenCash += Number(givenCashString);
+					document.getElementById("given-cash").innerHTML = givenCash;
+					givenCashString = '';
+					break;
+			}
+
+			document.getElementById("given-cash").innerHTML = givenCash;
+			document.getElementById("change").innerHTML = givenCash - totalNumber;
+		}
+	}
+</script>
+</body>
+</html>
